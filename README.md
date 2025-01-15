@@ -1,5 +1,5 @@
 # linux-lune
-test4 This is a custom built Linux kernel focused on a balance of speed and security. It is based on `linux-zen` and has all kernel configurations and patches from `linux-hardened`, tailored for compatibility, with a few exceptions (see [Observations](https://github.com/crylune/linux-lune#observations) for more on said exceptions). It also includes my own configurations and improvements that are documented below.
+This is a custom built Linux kernel focused on a balance of speed and security. It is based on `linux-zen` and has all kernel configurations and patches from `linux-hardened`, tailored for compatibility, with a few exceptions (see [Observations](https://github.com/crylune/linux-lune#observations) for more on said exceptions). It also includes my own configurations and improvements that are documented below.
 
 Here, I also offer standalone patches from `linux-hardened` tailored to work with the latest version of `linux-zen`, dubbed `lune-hardened`, if that's all that you're after.
 
