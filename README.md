@@ -1,15 +1,15 @@
 # linux-lune
-This is a custom built Linux kernel focused on a balance of speed and security. It is based on `linux-zen` and has all kernel configurations and patches from `linux-hardened`, tailored for compatibility, with a few exceptions (see [Observations](https://github.com/crylune/linux-lune#observations) for more on said exceptions). It also includes my own configurations and improvements that are documented below.
+This is a custom built Linux kernel focused on a balance of speed and security. It is based on `linux-zen` and has all kernel configurations and patches from `linux-hardened`, tailored for compatibility, with a few exceptions (see [Observations](https://github.com/crylune/linux-lune#observations)). It also includes my own configurations and improvements that are documented below.
 
-Here, I also offer standalone patches from `linux-hardened` tailored to work with the latest version of `linux-zen`, dubbed `lune-hardened`, if that's all that you're after.
+I also offer patches from `linux-hardened` tailored to work with the latest version of `linux-zen`, dubbed `lune-hardened`.
 
 # Why?
-The main motive behind this was wanting to use the Zen and Hardened kernels at the same time. No one seemed to have provided such a custom kernel, and the ones I've found were all grossly outdated. Applying the Hardened patches on top of Zen does not work without code modification due to diff conflicts. It seemed easy to adapt the Hardened patches and kernel configurations to work with Zen's, and I did just that.
+The main motive behind this was wanting to use the Zen and Hardened kernels at the same time. No one seemed to have provided such a custom kernel, and the ones I've found were all grossly outdated. Applying the Hardened patches on top of Zen does not work without code modification due to diff conflicts. It seemed easy to adapt the Hardened patches and kernel configurations to work with Zen's, and here we are.
 
 # Attention
-- This kernel is intended to be used with [Arch Linux](https://archlinux.org/), and the patches are intended to be applied and built with the [Arch Build System](https://wiki.archlinux.org/title/Kernel/Arch_build_system) (ABS). You are welcome to try this outside of Arch, but I do not recommend it.
+- This kernel is intended to be used with [Arch Linux](https://archlinux.org/), and the patches are intended to be applied and built with the [Arch Build System](https://wiki.archlinux.org/title/Kernel/Arch_build_system) (ABS).
 - The security configuration in this kernel is very strict by default (confidentiality lockdown mode by default and intentionally having no `linux-lune-headers` for modules, which are omitted - sorry, NVIDIA users). Your desktop experience may be impacted by using this kernel, it is up to you to determine whether or not it aligns with your workflow.
-- **I urge you to verify the authenticity of your downloaded files through SHA-256 checksums and the attached signatures, before utilising any of the files I provide, to protect against HTTP smuggling attacks. I care about your safety.**
+- **I urge you to verify the authenticity of your downloaded files through SHA-256 checksums and the attached signatures, before utilising any of the files I provide, to protect against HTTP smuggling attacks.**
 
 # List of changes in the kernel
 - Based on `linux-zen` patches and configurations
@@ -30,10 +30,10 @@ For convenience, I provide a pre-made kernel tarball, targeting the Generic x86_
 
 ... then recreate the configuration for your bootloader of choice.
 
-I might create an AUR submission for this in the future, but this kernel may be niche, so I'll see. For now, check back often and update to any new versions by downloading the updated tarball and running the same command. I update the kernel very regularly.
+The Lune kernel is updated only when `linux-hardened` receives an update.
 
 ## Patch file
-The patch file is almost entirely the one from `linux-hardened`, with my changes being code compatibility with `linux-zen`. increased `vm.max_map_count` value, and configuring some features for security at the kernel level (see Configurations below).
+The patch file is almost entirely the one from `linux-hardened`, with my changes being code compatibility with `linux-zen`. increased `vm.max_map_count` value, and configuring some features for security at the kernel level (see [Configurations](https://github.com/crylune/linux-lune#configurations) below).
 
 If you wish to build your own kernel (for example to tailor it to your CPU's architecture), clone `linux-zen`, have the corresponding `lune-hardened-vx.xx.xx.patch` file in the `PKGBUILD`'s directory, and follow instructions from the ABS.
 
@@ -43,12 +43,10 @@ Additionally, as in `linux-hardened`, you are required to comment out the follow
 
 `# make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1`
 
-The standalone patch file can be found in the Releases section. As specified, it is to be applied directly on top of the corresponding version of `linux-zen`.
-
 You are free to change anything about the kernel and make it your own, including the `config` file (I do recommend adding the configurations below), and the source code present on this page.
 
 ## Note
-The patch file is only a part of `linux-hardened`. Its configurations are also necessary, and those are included in my kernel tarball. However, if you wish to build your own, you will have to copy its configurations yourself and apply them to your own kernel.
+The patch file is only a part of `linux-hardened`. Its configurations are not handled by the patch file, and they are important and necessary. They are also included in my kernel tarball. However, if you wish to build your own, you will have to copy its configurations yourself and apply them to your own kernel.
 
 Luckily, this is easy to do and always compatible. Making the `linux-hardened` patch file compatible with Zen patches is the hard part and I did that for you. You can use `meld` to compare the `config` files of `linux-zen` and `linux-hardened`, and apply the security improvements from the latter to the former.
 
