@@ -30,7 +30,7 @@ For convenience, I provide a pre-made kernel tarball, targeting the Generic x86_
 
 ... then recreate the configuration for your bootloader of choice.
 
-The Lune kernel is updated only when `linux-hardened` receives an update.
+AUR package for this kernel is planned, however it is quite niche, so we will see. For now, update the kernel by checking back every once in a while and following the above steps. It is updated regularly.
 
 ## Patch file
 The patch file is almost entirely the one from `linux-hardened`, with my changes being code compatibility with `linux-zen`. increased `vm.max_map_count` value, and configuring some features for security at the kernel level (see [Configurations](https://github.com/crylune/linux-lune#configurations) below).

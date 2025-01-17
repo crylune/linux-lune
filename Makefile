@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 6
 PATCHLEVEL = 12
-SUBLEVEL = 9
-EXTRAVERSION = -lune
-NAME = Combining Zen and Hardened kernels
+SUBLEVEL = 10
+EXTRAVERSION = -zen1
+NAME = Channeling Inner Peace for Peak Performance
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
