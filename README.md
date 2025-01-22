@@ -240,7 +240,7 @@ The following kernel cmdline parameters are recommended for additional security 
 
 
 **Q: Why is there no AUR package for this?**  
-**A:** The AUR requires that packages be useful. Not saying that this kernel isn't useful, but it may be so niche, the staff could remove the package. If this kernel gets enough attention and enough people are interested to use it, I will push an AUR package and keep it maintained there while continuing to make releases and update source code here
+**A:** The AUR requires that packages be useful. Not saying that this kernel isn't useful, but it may be so niche, the staff could remove the package. If this kernel gets enough attention and enough people are interested to use it, I will push an AUR package and keep it maintained there while continuing to make releases and update source code here.
 
 
 **Q: Will this cause any issues? Will it work on my machine?**  
