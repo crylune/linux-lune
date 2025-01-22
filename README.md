@@ -3,9 +3,6 @@ This is a custom built Linux kernel focused on a balance of speed and security. 
 
 I also offer patches from `linux-hardened` tailored to work with the latest version of `linux-zen`, dubbed `lune-hardened`.
 
-# Why?
-The main motive behind this was wanting to use the Zen and Hardened kernels at the same time. No one seemed to have provided such a custom kernel, and the ones I've found were all grossly outdated. Applying the Hardened patches on top of Zen does not work without code modification due to diff conflicts. It seemed easy to adapt the Hardened patches and kernel configurations to work with Zen's, and here we are.
-
 # Attention
 - This kernel is intended to be used with [Arch Linux](https://archlinux.org/), and the patches are intended to be applied and built with the [Arch Build System](https://wiki.archlinux.org/title/Kernel/Arch_build_system) (ABS).
 - The security configuration in this kernel is very strict by default (confidentiality lockdown mode by default and intentionally having no `linux-lune-headers` for modules, which are omitted - sorry, NVIDIA users). Your desktop experience may be impacted by using this kernel, it is up to you to determine whether or not it aligns with your workflow.
@@ -224,3 +221,22 @@ The following kernel cmdline parameters are recommended for additional security 
 # Observations
 - The `CONFIG_USER_NS_UNPRIVILEGED` parameter is deliberately not set in the patch and kernel, as it causes compatibility issues with many applications who for some reason still rely on insecure unprivileged namespaces. Instead, it is recommended to use sysctl and set the `kernel.unprivileged_userns_clone` parameter to `0` (unprivileged namespaces disabled; more secure) or `1` (enabled; less secure but more compatible) through a .conf file, which makes it easier to switch it on and off on-demand versus having to re-build the entire kernel.
 - You may notice that not all recommended parameters from the KSPP are included. This is because I have tested them and they affect performance greatly (such as forcing SLUB debugging), which is not the point of this kernel. I do not intend to maximize security here and I am conscious that I am omitting some configurations, but that is because, as I mentioned at the beginning of this README, this is supposed to be balanced between security and speed. The goal is to have this kernel be more secure than `linux-hardened` while offering the speed of `linux-zen`.
+
+# FAQ
+**Q:** Why should I use this?
+**A:** The main motive behind using this kernel is if you want to use the Zen and Hardened kernels at the same time. A balance of speed, and security. I've noticed many people ask for such a kernel but none have went ahead and made one.
+
+**Q:** How often is this kernel tested and is it rigorous?
+**A:** Since the `linux-hardened` patches are minimal and often require no maintenance to be compatible, adapting them to `linux-zen` should just work as the Zen kernel itself adds parts of Hardened, hence the diff conflicts while trying to use both patches at once. I simply remove the conflicting code and adapt any other code to work. In other words, this requires little to no testing, as the Zen and Hardened patches are extensively tested themselves. I test on my main desktop and two other machines before releasing a new version.
+
+**Q:** Are you the sole maintainer?
+**A:** Yes.
+
+**Q:** How often is this kernel updated?
+**A:** I usually update when a new version of `linux-hardened` is out, as `linux-zen` always updates to every version, which is not the case with the Hardened kernel. Still, I might update Hardened patches myself and push new versions regardless.
+
+**Q:** Why is there no AUR package for this?
+**A:** The AUR requires that packages be useful. Not saying that this kernel isn't useful, but it may be so niche, the staff could remove the package. If this kernel gets enough attention and enough people are interested to use it, I will push an AUR package and keep it maintained there while continuing to make releases and update source code here
+
+**Q:** Will this cause any issues? Will it work on my machine?
+**A:** Only one way to find out. As with any kernel, creating a whole system backup (through Timeshift or similar) is recommended before deploying. Generally, you should have no issues if both `linux-zen` and `linux-hardened` function on your machine. The only issues you may encounter is if you require a feature that I have deliberately disabled in the kernel for security reasons (such as suspend and hibernation), so I encourage you to go over the list and check for yourself. Keep in mind that there are no headers for this kernel on purpose, so modules like VMware or even proprietary NVIDIA drivers may not work.
