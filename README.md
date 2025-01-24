@@ -1,3 +1,6 @@
+# IMPORTANT
+**This project is put on hold for the time being due to a lack of time to keep the kernel maintained, and general lack of interest. If you really want to see this project revived, bug me about it.**
+
 # linux-lune
 This is a custom built Linux kernel focused on a balance of speed and security. It is based on `linux-zen` and has all kernel configurations and patches from `linux-hardened`, tailored for compatibility, with a few exceptions (see [Observations](https://github.com/crylune/linux-lune#observations)). It also includes my own configurations and improvements that are documented below.
 
